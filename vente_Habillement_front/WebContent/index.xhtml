@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<!-- 	xmlns:jsf="http://xmlns.jcp.org/jsf"-->
+<f:view locale="#{authentication.locale}">
+<h:head>
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{managedVente.init}" />
+		<f:event type="preRenderView" listener="#{managedStatus.init}" />
+	</f:metadata>
+	<meta charset="UTF-8" />
+	<title>Eshop Vetement</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		rel="stylesheet" />
+	<link type="text/css" rel="stylesheet"
+		href="resources/css/materialize.min.css" media="screen,projection" />
+		<link type="text/css" rel="stylesheet" href="resources/css/iziModal.min.css" />
+	<link type="text/css" rel="stylesheet" href="resources/css/main.css" />
+	<!-- datepicker -->
+	<link  href="resources/css/datepicker.min.css" rel="stylesheet"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<style>
+.modal {
+	width: 82% !important;
+	height: 85% !important
+}
+
+</style>
+
+</h:head>
+<h:body class="grey lighten-4">
+
+	<nav class="blue darken-2">
+		<div class="container">
+			<div class="nav-wrapper">
+				<a href="index.xhtml" class="brand-logo">Evetement</a> <a href="#"
+					data-activates="side-nav"
+					class="button-collapse show-on-large right"> <i
+					class="material-icons">menu</i>
+				</a>
+				<ul class="right hide-on-med-and-down">
+					<li class="active"><a href="index.xhtml"> <h:outputText value="#{msg['dashbord']}"/></a></li>
+					<li><a href="fournisseur.xhtml"><h:outputText value="#{msg['suplyier']}" /> </a></li>
+					<li><a href="client.xhtml"><h:outputText value="#{msg['clients']}" /> </a></li>
+					<li class="notification"><a href="articles.xhtml"><h:outputText value="#{msg['products']}" /> </a></li>
+					<li ><a href="achat.xhtml"><h:outputText value="#{msg['buying']}" /> </a></li>
+					<li><a href="vente.xhtml"><h:outputText value="#{msg['sales']}" /> </a></li>
+				</ul>
+				<!-- Side nav -->
+				<ul id="side-nav" class="side-nav">
+					<li>
+						<div class="user-view">
+							<div class="background">
+								<img src="resources/img/ocean.jpg" alt="" />
+							</div>
+							<a href="#"> <img src="resources/img/abdel.jpg" alt=""
+								class="circle"></img>
+							</a> <a href="#"> <span class="name white-text">Abdel Ysf</span>
+							</a> <a href="#"> <span class="email white-text">Abdel.ysf@gmail.com</span>
+							</a>
+						</div>
+					</li>
+					<li><a href="index.xhtml"> <i class="material-icons">dashboard</i>
+							<h:outputText value="#{msg['dashbord']}"/>
+					</a></li>
+					<li><a href="fournisseur.xhtml"><h:outputText value="#{msg['suplyier']}" /> </a></li>
+					<li><a href="client.xhtml"><h:outputText value="#{msg['clients']}" /> </a></li>
+					<li><a href="articles.xhtml"><h:outputText value="#{msg['products']}" /> </a></li>
+					<li ><a href="achat.xhtml"><h:outputText value="#{msg['buying']}" /> </a></li>
+					<li><a href="vente.xhtml"><h:outputText value="#{msg['sales']}" /> </a></li>
+					<li>
+						<div class="divider"></div>
+					</li>
+					
+					
+					<li><h:form>
+					
+					<h:commandLink action="#{authentication.logout}" value="#{msg['logout']}" style="color:#383333;" />
+					</h:form>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+<div class="row">
+<div class="col offset-l3 l6 m12 s12">
+	<p:messages id="messages" showDetail="true" closable="true">
+		<p:autoUpdate />
+	</p:messages>
+	</div>
+	</div>
+	
+<!-- Section: Status -->
+  <section class="section section-stats center">
+    <div class="row">
+      <div class="col s12 m6 l3">
+        <div class="card-panel blue lighten-1 white-text center">
+          <i class="material-icons medium">face</i>
+          <h5><h:outputText value="#{msg['meter_clients']}" /></h5>
+          <h3 class="count"><h:outputText value="#{managedStatus.etat.countClient}"/>   </h3>
+          <div class="progress grey lighten-1">
+            <div class="determinate white" style="width: 40%;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6 l3">
+        <div class="card-panel center">
+          <i class="material-icons medium">add_shopping_cart</i>
+          <h5><h:outputText value="#{msg['meter_pinStock']}" /></h5>
+          <h3 class="count"><h:outputText value="#{managedStatus.etat.countArticle}"/></h3>
+          <div class="progress grey lighten-1">
+            <div class="determinate blue lighten-1" style="width: 20%;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6 l3">
+        <div class="card-panel blue lighten-1 white-text center">
+          <i class="material-icons medium">attach_money</i>
+          <h5><h:outputText value="#{msg['meter_turnover']}" /> </h5>
+          <h3 class="count"><h:outputText value="#{managedStatus.etat.chifferDAffair}"/> </h3>
+          <div class="progress grey lighten-1">
+            <div class="determinate white" style="width: 40%;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6 l3">
+        <div class="card-panel  center">
+          <i class="material-icons medium">attach_money</i>
+          <h5><h:outputText value="#{msg['meter_credit']}" /></h5>
+          <h3 class="count"><h:outputText value="#{managedStatus.etat.totalCredi}"/></h3>
+          <div class="progress grey lighten-1">
+            <div class="determinate white " style="width: 10%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    <div class="row">
+      <div class=" col s12  m12 l3">
+        <div class="card-panel blue lighten-1 white-text center">
+          <i class="material-icons medium">image_aspect_ratio </i>
+          <h5><h:outputText value="#{msg['meter_sales']}" /></h5>
+          <h3 class="count"><h:outputText value="#{managedStatus.etat.countVente}"/></h3>
+          <div class="progress grey lighten-1">
+            <div class="determinate white" style="width: 40%;"></div>
+          </div>
+        </div>
+      </div>
+     <div class="col  s12 m12 l6">
+				<div class="card-panel" data-aos="fade-right">
+					<canvas id="bar-chart-article"  ></canvas>
+				</div>
+			</div>
+      <div class="col s12 m6 l3">
+        <div class="card-panel center">
+          <i class="material-icons medium">business</i>
+          <h5><h:outputText value="#{msg['meter_purchases']}" /></h5>
+          <h3 class="count"><h:outputText value="#{managedStatus.etat.countAchat}"/></h3>
+          <div class="progress grey lighten-1">
+            <div class="determinate blue lighten-1" style="width: 10%;"></div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+  <!--  statistics section  -->
+  <section class="section blue lighten-4">
+  
+		<div class="row ">
+			
+			<div class="col offset-l1 s12 m8 l10">
+				<div class="card-panel" data-aos="fade-right">
+					<canvas id="bar-chart"  ></canvas>
+				</div>
+			</div>
+		</div>
+		<div class="row ">
+			
+			<div class="col s12 m12 l6">
+				<div class="card-panel" data-aos="fade-right">
+					<canvas id="bar-chart-month"  ></canvas>
+				</div>
+			</div>
+		
+		      <div class="col  s12 m12 l6">
+				<div class="card-panel" >
+					<canvas id="bar-chart-parAge"  ></canvas>
+				</div>
+			</div>
+			
+			
+		</div>
+		<div class="row ">
+			
+			<div class="col s12 m12 l6">
+				<div class="card-panel" data-aos="fade-right">
+					<canvas id="bar-chart-parSex"  ></canvas>
+				</div>
+			</div>
+			<div class="col s12 m12 l6">
+				<div class="card-panel" data-aos="fade-right">
+					<canvas id="bar-chart-parType"  ></canvas>
+				</div>
+			</div>
+		
+		
+			
+			
+		</div>
+	</section>
+	 
+	  
+	<!-- Fixed Action Button -->
+	<div class="fixed-action-btn">
+		<a class="btn-floating btn-large red"> <i class="material-icons">add</i>
+		</a>
+		<ul>
+			<li><a href="#vente-modal"  style="tooltipped" data-position="left" data-tooltip="ajouter vente"
+				class="modal-trigger btn-floating green"> <i
+					class="material-icons">mode_edit</i>
+			</a></li>
+			<li><a href="statistics.xhtml" style="tooltipped" data-position="left" data-tooltip="les statistique"
+				class="modal-trigger btn-floating blue"> 
+				<i class="material-icons">show_chart</i>
+			</a></li>
+			<li><a href="DetailedInfo.xhtml"
+				class="modal-trigger btn-floating red"> <i
+					class="material-icons">supervisor_account</i>
+			</a></li>
+		</ul>
+	</div>
+
+	<div id="vente-modal" class="modal">
+		<div class="modal-content">
+			<h4>ajouter vente</h4>
+			<h:form>
+				<div class="input-field">
+				<i class="material-icons prefix">date_range</i>
+					<h:inputText id="date" value="#{managedVente.dateVente}"
+						required="true" styleClass="datepicker" />
+					<label class="blue-text" for="date">date</label>
+				</div>
+			
+				<!-- -->
+				<div class="input-field">
+				<i class="material-icons prefix">filter_1</i>
+					<h:inputText id="quantite" value="#{managedVente.vente.quantite}"
+						required="true" requiredMessage="la quantite doit etre un entier">
+					</h:inputText>
+					<label class="blue-text" for="quantite">quantite</label>
+				</div>
+				<div class="input-field">
+				<i class="material-icons prefix">face</i>
+					<h:selectOneMenu value="#{managedVente.choosenClient}"
+						styleClass="blue-text">
+						<f:selectItems value="#{managedVente.listClient}" var="client"
+							itemValue="#{client.idClient}" itemLabel="#{client.nomComplet}" />
+					</h:selectOneMenu>
+					<label class="blue-text" for="adresse">client</label>
+				</div>
+				<div class="input-field">
+				<i class="material-icons prefix">local_grocery_store</i>
+					<h:selectOneMenu id="arti" value="#{managedVente.choosenArticle}"
+						styleClass="blue-text">
+						<f:selectItems value="#{managedVente.listArticle}" var="article"
+							itemValue="#{article.ref}"
+							itemLabel="#{article.designation.nomDesignation} #{article.designation.sousType} taille #{article.taille}" />
+					</h:selectOneMenu>
+					<label class="blue-text" for="arti">article</label>
+				</div>
+				<div class="input-field">
+				<i class="material-icons prefix">monetization_on</i>
+					<h:selectOneMenu value="#{managedVente.vente.modePayement}"
+						styleClass="blue-text">
+						<f:selectItem itemValue="espèce" itemLabel="espèce" />
+						<f:selectItem itemValue="cache" itemLabel="cache" />
+						<f:selectItem itemValue="chèque" itemLabel="chèque" />
+
+					</h:selectOneMenu>
+					<label class="blue-text" for="pay">mode de payement</label>
+				</div>
+
+			<p:selectBooleanCheckbox value="#{managedVente.showCrdit}" styleClass="blue-text checkbox" itemLabel="avec credit" valueChangeListener="#{managedVente.showCreditDetails}">
+     			 <p:ajax event="change" /> 
+			</p:selectBooleanCheckbox>
+		
+				  <div class="input-field" >
+				  
+				  <i class="material-icons prefix">date_range</i>
+					<h:inputText id="versement" value="#{managedVente.dateExpirationCredit}" styleClass="datepicker">
+					</h:inputText>
+					<label class="blue-text" for="versement">date expiration credit</label>
+				</div>	
+					<h:commandButton value="ajouter vente"
+						styleClass="modal-action modal-close btn blue white-text"
+						action="#{managedVente.addVente}" />
+			</h:form>
+		</div>
+	</div>
+	<!-- Footer -->
+	<footer class="section blue darken-2 white-text center">
+		<p>
+    	<h:outputText value="#{msg['footer']}"/>
+    </p>
+    <h:form>
+        <h:commandButton styleClass="btnLang" action="#{authentication.changeLanguage('')}"
+            value="fr"  image="resources/img/french.png" />
+        
+        <h:commandButton  styleClass="btnLang" action="#{authentication.changeLanguage('en')}"
+            value="english"  image="resources/img/english.png" />
+    </h:form>
+  </footer>
+  
+	<!-- Preloader -->
+	<div class="loader preloader-wrapper big active">
+		<div class="spinner-layer spinner-blue-only">
+			<div class="circle-clipper left">
+				<div class="circle"></div>
+			</div>
+			<div class="gap-patch">
+				<div class="circle"></div>
+			</div>
+			<div class="circle-clipper right">
+				<div class="circle"></div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<script type="text/javascript" src="resources/js/Chart.min.js"></script>
+     <script type="text/javascript" src="resources/js/notify.min.js"></script>
+    <script type="text/javascript" src="resources/js/barChartTaille.js"></script>
+    <script type="text/javascript" src="resources/js/barChartMonths.js"></script>
+    <script type="text/javascript" src="resources/js/barChartByArticles.js"></script>
+     <script type="text/javascript" src="resources/js/barChartByCategorie.js"></script>
+     <script type="text/javascript" src="resources/js/notification.js"></script>
+     
+     <script type="text/javascript" src="resources/js/materialize.min.js"></script>
+     
+		<script src="resources/js/datepicker.min.js"></script>
+		<script >
+	$(document).ready(function() {
+		$('.datepicker').pickadate({
+			format : 'mm/dd/yyyy',
+			selectMonths : true, // Creates a dropdown to control month
+			selectYears : 15,
+			 container: 'body'
+		// Creates a dropdown of 15 years to control year
+		});
+		
+		// 
+		
+		
+	});
+	$(document).ready(function() {
+		$('select').material_select();
+		Chart.defaults.global.animation.duration = 400;
+	});
+	// Hide Sections
+	$('.section').hide();
+	
+	setTimeout(function() {
+		$(document).ready(function() {
+			// Show sections
+			$('.section').fadeIn();
+
+			// Hide preloader
+			$('.loader').fadeOut();
+
+			//Init Side nav
+			$('.button-collapse').sideNav();
+
+			// Init Modal
+			$('.modal').modal();
+			
+			// Counter
+			$('.count').each(function () {
+			  $(this).prop('Counter', 0).animate({
+			    Counter: $(this).text()
+			  }, {
+			      duration: 2000,
+			      easing: 'swing',
+			      step: function (now) {
+			        $(this).text(Math.ceil(now));
+			      }
+			    });
+			});
+		});
+	}, 1000);
+	
+ //
+ console.log('');
+ $.notify('<h:outputText value="#{managedVente.notificationMsg}"/>', { globalPosition: 'left',showDuration: 2000,hideDuration: 400,className:'warn',
+	  clickToHide: true,
+	  autoHide: true,
+	  globalPosition: 'top right' });
+ window.onload = function() {
+	    renderBarChartByTaille();
+	    renderBarChartByMonths();
+	    /* renderBarChartByArticles(); */
+	    renderBarChartByCateAge();
+	    renderBarChartByCateSex();
+	    renderBarChartByCateType();
+	    sendNotificaion();
+	    setTimeout( renderBarChartByArticles(), 2100);
+	};
+ </script>
+</h:body>
+
+</f:view>
+</html>

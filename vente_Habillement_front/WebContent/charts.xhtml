@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<!-- 	xmlns:jsf="http://xmlns.jcp.org/jsf"-->
+<f:view locale="#{authentication.locale}">
+<h:head>
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{managedVente.init}" />
+		<f:event type="preRenderView" listener="#{managedStatus.init}" />
+	</f:metadata>
+	<meta charset="UTF-8" />
+	<title>Eshop Vetement</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		rel="stylesheet" />
+	<link type="text/css" rel="stylesheet"
+		href="resources/css/materialize.min.css" media="screen,projection" />
+	<link type="text/css" rel="stylesheet" href="resources/css/main.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+</h:head>
+<h:body class="grey lighten-4">
+
+	<nav class="blue darken-2">
+		<div class="container">
+			<div class="nav-wrapper">
+				<a href="index.xhtml" class="brand-logo">Evetement</a> <a href="#"
+					data-activates="side-nav"
+					class="button-collapse show-on-large right"> <i
+					class="material-icons">menu</i>
+				</a>
+				<ul class="right hide-on-med-and-down">
+					<li class="active"><a href="index.xhtml"> <h:outputText
+								value="#{msg['dashbord']}" /></a></li>
+					<li><a href="fournisseur.xhtml"><h:outputText
+								value="#{msg['suplyier']}" /> </a></li>
+					<li><a href="client.xhtml"><h:outputText
+								value="#{msg['clients']}" /> </a></li>
+					<li><a href="articles.xhtml"><h:outputText
+								value="#{msg['products']}" /> </a></li>
+					<li><a href="achat.xhtml"><h:outputText
+								value="#{msg['buying']}" /> </a></li>
+					<li><a href="vente.xhtml"><h:outputText
+								value="#{msg['sales']}" /> </a></li>
+				</ul>
+				<!-- Side nav -->
+				<ul id="side-nav" class="side-nav">
+					<li>
+						<div class="user-view">
+							<div class="background">
+								<img src="resources/img/ocean.jpg" alt="" />
+							</div>
+							<a href="#"> <img src="resources/img/abdel.jpg" alt=""
+								class="circle"></img>
+							</a> <a href="#"> <span class="name white-text">Abdel Ysf</span>
+							</a> <a href="#"> <span class="email white-text">Abdel.ysf@gmail.com</span>
+							</a>
+						</div>
+					</li>
+					<li><a href="index.xhtml"> <i class="material-icons">dashboard</i>
+							<h:outputText value="#{msg['dashbord']}" />
+					</a></li>
+					<li><a href="fournisseur.xhtml"><h:outputText
+								value="#{msg['suplyier']}" /> </a></li>
+					<li><a href="client.xhtml"><h:outputText
+								value="#{msg['clients']}" /> </a></li>
+					<li><a href="articles.xhtml"><h:outputText
+								value="#{msg['products']}" /> </a></li>
+					<li><a href="achat.xhtml"><h:outputText
+								value="#{msg['buying']}" /> </a></li>
+					<li><a href="vente.xhtml"><h:outputText
+								value="#{msg['sales']}" /> </a></li>
+					<li>
+						<div class="divider"></div>
+					</li>
+					<li><h:form>
+					
+					<h:commandLink action="#{authentication.logout}" value="#{msg['logout']}" style="color:#383333;" />
+					</h:form>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<p:messages id="messages" showDetail="true" closable="true">
+		<p:autoUpdate />
+	</p:messages>
+	<!--  statistics section  -->
+
+	<section class="section blue lighten-4">
+		<div class="row ">
+
+			<div class="col offset-l1 s12 m8 l10">
+				<div class="card-panel" data-aos="fade-right" id="chartContainer" >
+					<canvas id="bar-chart" ></canvas>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Preloader -->
+	<div class="loader preloader-wrapper big active">
+		<div class="spinner-layer spinner-blue-only">
+			<div class="circle-clipper left">
+				<div class="circle"></div>
+			</div>
+			<div class="gap-patch">
+				<div class="circle"></div>
+			</div>
+			<div class="circle-clipper right">
+				<div class="circle"></div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer -->
+	<footer class="section blue darken-2 white-text center">
+		<p>
+			<h:outputText value="#{msg['footer']}" />
+		</p>
+		<h:form>
+			<h:commandButton styleClass="btnLang"
+				action="#{authentication.changeLanguage('')}" value="fr"
+				image="resources/img/french.png" />
+
+			<h:commandButton styleClass="btnLang"
+				action="#{authentication.changeLanguage('en')}" value="english"
+				image="resources/img/english.png" />
+		</h:form>
+	</footer>
+	<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="resources/js/materialize.min.js"></script>
+	<script type="text/javascript" src="resources/js/Chart.min.js"></script>
+	<script type="text/javascript" src="resources/js/customjs.js"></script>
+
+</h:body>
+
+
+
+</f:view>
+</html>

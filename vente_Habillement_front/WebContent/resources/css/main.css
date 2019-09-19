@@ -1,0 +1,61 @@
+.loader {
+  position: absolute;
+  top: 40%;
+  left: 47%;
+}
+
+.login {
+  margin-top: 70px;
+  margin-bottom: 70px;
+}
+
+.btn-extended {
+  display: block;
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+}
+.datatable td{
+	width: 20px;
+}
+.modal { width: 82% !important ; max-height: 100% !important } 
+#search-modal{width: 60% !important ; max-height: 40% !important}
+.search-div{
+	 display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.jqplot-table-legend{
+	right:80px;
+	display:none;
+top: 0px;
+    width: 0PX
+    	
+}
+.btnLang{
+	width:20px;
+}
+canvas{
+
+
+  height:15% !important ;
+
+} 
+.ui-growl-item {
+   
+    background-color: #FFF59C;
+    color: #333;
+span.badge {
+	/* font-weight: 300; */
+    font-size: 4px;
+    color: #fff;
+    background-color: chartreuse;
+    border-radius: 10px;
+}
+.colorDark{
+	color:#383333;
+}

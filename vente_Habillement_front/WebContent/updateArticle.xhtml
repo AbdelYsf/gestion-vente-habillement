@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
+	<f:view locale="#{authentication.locale}">
+<h:head>
+
+	<meta charset="UTF-8" />
+	<title>Eshop Vetement</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		rel="stylesheet" />
+	<link type="text/css" rel="stylesheet"
+		href="resources/css/materialize.min.css" media="screen,projection" />
+	<link type="text/css" rel="stylesheet" href="resources/css/main.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</h:head>
+<h:body class="grey lighten-4">
+	<nav class="blue darken-2">
+		<div class="container">
+			<div class="nav-wrapper">
+				<a href="index.xhtml" class="brand-logo">Evetement</a> <a href="#"
+					data-activates="side-nav"
+					class="button-collapse show-on-large right"> <i
+					class="material-icons">menu</i>
+				</a>
+				<ul class="right hide-on-med-and-down">
+
+					<li><a href="index.xhtml"> <h:outputText
+								value="#{msg['dashbord']}" /></a></li>
+					<li><a href="fournisseur.xhtml"><h:outputText
+								value="#{msg['suplyier']}" /> </a></li>
+					<li><a href="client.xhtml"><h:outputText
+								value="#{msg['clients']}" /> </a></li>
+					<li class="active"><a href="articles.xhtml"><h:outputText
+								value="#{msg['products']}" /> </a></li>
+					<li><a href="achat.xhtml"><h:outputText
+								value="#{msg['buying']}" /> </a></li>
+					<li><a href="vente.xhtml"><h:outputText
+								value="#{msg['sales']}" /> </a></li>
+				</ul>
+				<!-- Side nav -->
+				<ul id="side-nav" class="side-nav">
+					<li>
+						<div class="user-view">
+							<div class="background">
+								<img src="resources/img/ocean.jpg" alt="" />
+							</div>
+							<a href="#"> <img src="resources/img/abdel.jpg" alt=""
+								class="circle"></img>
+							</a> <a href="#"> <span class="name white-text">Abdel Ysf</span>
+							</a> <a href="#"> <span class="email white-text">Abdel.ysf@gmail.com</span>
+							</a>
+						</div>
+					</li>
+					<li><a href="index.xhtml"> <i class="material-icons">dashboard</i>
+							<h:outputText value="#{msg['dashbord']}" />
+					</a></li>
+					<li><a href="fournisseur.xhtml"><h:outputText
+								value="#{msg['suplyier']}" /> </a></li>
+					<li><a href="client.xhtml"><h:outputText
+								value="#{msg['clients']}" /> </a></li>
+					<li class="active"><a href="articles.xhtml"><h:outputText
+								value="#{msg['products']}" /> </a></li>
+					<li><a href="achat.xhtml"><h:outputText
+								value="#{msg['buying']}" /> </a></li>
+					<li><a href="vente.xhtml"><h:outputText
+								value="#{msg['sales']}" /> </a></li>
+					<li>
+						<div class="divider"></div>
+					</li>
+
+					<li><h:form>
+					
+					<h:commandLink action="#{authentication.logout}" value="#{msg['logout']}" style="color:#383333;" />
+					</h:form>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="row">
+		<div class="col offset-l3 l6 m12 s12">
+			<p:messages id="messages" showDetail="true" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+		</div>
+	</div>
+	<!-- Section: ARTICLE -->
+	<section class="section section-users grey lighten-4">
+		<div class="container">
+			<div class="row">
+				<div class="card">
+					<div class="card-content">
+						<span class="card-title">Articles</span>
+						<div class="card-action">
+
+							<h:form>
+								<!-- update articel  -->
+
+								<div class="input-field">
+									<i class="material-icons prefix">settings_ethernet</i>
+									<h:inputText id="ref"
+										value="#{managedArticle.eligibleUpdateArticle.ref}"
+										styleClass="validate" disabled="true" />
+									<h:outputLabel class="blue-text" for="ref">reference</h:outputLabel>
+								</div>
+								
+								<div class="input-field">
+									<i class="material-icons prefix">label</i>
+									<h:selectOneMenu id="designation"
+										value="#{managedArticle.eligibleUpdateArticle.designation.idDesignation}"
+										styleClass="blue-text">
+										<f:selectItem itemValue="5" itemLabel="Pantalon Toile " />
+										<f:selectItem itemValue="2"
+											itemLabel="Pantalon Tissu classique " />
+										<f:selectItem itemValue="3 " itemLabel="Pantalon Survette " />
+										<f:selectItem itemValue="4" itemLabel="Pantalon Pantacourt " />
+										<f:selectItem itemValue="6" itemLabel="Pull colle V " />
+										<f:selectItem itemValue=" 7" itemLabel=" Pull colle rond " />
+										<f:selectItem itemValue="11" itemLabel="Pull veste " />
+										<f:selectItem itemValue="8" itemLabel="Pull Capuchon" />
+										<f:selectItem itemValue="9" itemLabel="Pull Polo " />
+										<f:selectItem itemValue="10 " itemLabel="Pull T-Shirt " />
+										<f:selectItem itemValue="12" itemLabel="Chemise manche " />
+										<f:selectItem itemValue="13" itemLabel="Chemise courte " />
+										<f:selectItem itemValue="16" itemLabel="Manteau" />
+										<f:selectItem itemValue="15" itemLabel="Jacket" />
+										<f:selectItem itemValue="17" itemLabel="Costume " />
+										<f:selectItem itemValue="18 " itemLabel=" Sweet" />
+										<f:selectItem itemValue="19" itemLabel="Lingerie Boxer" />
+										<f:selectItem itemValue="20"
+											itemLabel="Lingerie Chaussette classique" />
+										<f:selectItem itemValue="21"
+											itemLabel="Lingerie Chaussette sport" />
+										<f:selectItem itemValue="22"
+											itemLabel="Lingerie Sous vêtement" />
+										<f:selectItem itemValue="23"
+											itemLabel="Lingerie Sous Pantalon  " />
+										<f:selectItem itemValue="24" itemLabel=" ceinture classique" />
+										<f:selectItem itemValue="25" itemLabel=" ceinture sport" />
+										<f:selectItem itemValue="26" itemLabel=" Basquette" />
+										<f:selectItem itemValue="27" itemLabel=" Chaussure" />
+										<f:selectItem itemValue="1" itemLabel=" Jeans" />
+									</h:selectOneMenu>
+									<label class="blue-text" for="designation">designation</label>
+								</div>
+
+								<div class="input-field">
+									<i class="material-icons prefix">accessibility</i>
+									<h:selectOneMenu id="taille"
+										value="#{managedArticle.eligibleUpdateArticle.taille}"
+										styleClass="blue-text">
+										<f:selectItem itemValue="S" itemLabel="S" />
+										<f:selectItem itemValue="XS" itemLabel="XS" />
+										<f:selectItem itemValue="L" itemLabel="L" />
+										<f:selectItem itemValue="M" itemLabel="M " />
+										<f:selectItem itemValue="XL" itemLabel="XL" />
+										<f:selectItem itemValue="XXL" itemLabel="XXL" />
+										<f:selectItem itemValue="26" itemLabel="26" />
+										<f:selectItem itemValue="28" itemLabel="28" />
+										<f:selectItem itemValue="30" itemLabel="30" />
+										<f:selectItem itemValue="32" itemLabel="32" />
+										<f:selectItem itemValue="34" itemLabel="34" />
+										<f:selectItem itemValue="36" itemLabel="36 " />
+										<f:selectItem itemValue="38" itemLabel="38" />
+										<f:selectItem itemValue="40" itemLabel="40" />
+										<f:selectItem itemValue="42" itemLabel="42" />
+										<f:selectItem itemValue="44" itemLabel="44" />
+										<f:selectItem itemValue="46" itemLabel="46" />
+									</h:selectOneMenu>
+									<label class="blue-text" for="taille">taille</label>
+								</div>
+								<div class="input-field">
+									<i class="material-icons prefix">flag</i>
+									<h:inputText id="marque"
+										value="#{managedArticle.eligibleUpdateArticle.marque}"
+										required="true" />
+									<label class="blue-text" for="marque">marque</label>
+								</div>
+								<div class="input-field">
+									<i class="material-icons prefix"> card_membership</i>
+									<h:selectOneMenu id="categorie"
+										value="#{managedArticle.eligibleUpdateArticle.categorie.idCateg}"
+										styleClass="blue-text">
+										<f:selectItem itemValue="2"
+											itemLabel="adulte ,classique ,femme" />
+										<f:selectItem itemValue="1"
+											itemLabel="adulte ,classique ,homme" />
+										<f:selectItem itemValue="4" itemLabel="adulte , soprt ,femme" />
+										<f:selectItem itemValue="3" itemLabel="adulte ,sport ,femme " />
+										<f:selectItem itemValue="8"
+											itemLabel="enfant ,classique ,femme" />
+										<f:selectItem itemValue="7"
+											itemLabel="enfant ,classique ,homme" />
+										<f:selectItem itemValue="6" itemLabel="enfant , soprt ,homme" />
+										<f:selectItem itemValue="5" itemLabel="enfant ,sport ,femme " />
+									</h:selectOneMenu>
+
+									<label class="blue-text" for="categorie">categorie</label>
+								</div>
+								<div class="input-field">
+
+									<i class="material-icons prefix">filter_1</i>
+									<h:inputText id="quantite"
+										value="#{managedArticle.eligibleUpdateArticle.quantite}"
+										required="true" />
+									<label class="blue-text" for="quantite">quantite</label>
+								</div>
+								<div class="input-field">
+									<i class="material-icons prefix">attach_money</i>
+									<h:inputText id="prix"
+										value="#{managedArticle.eligibleUpdateArticle.prix}"
+										required="true" />
+									<label class="blue-text" for="prix">prix</label>
+								</div>
+								<h:commandButton value="metter a joure"
+									styleClass="modal-action modal-close btn blue white-text"
+									action="#{managedArticle.updateArticle}" />
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+
+
+
+
+	<!-- Footer -->
+	<footer class="section blue darken-2 white-text center">
+		<p>
+			<h:outputText value="#{msg['footer']}" />
+		</p>
+		<h:form>
+			<h:commandButton styleClass="btnLang"
+				action="#{authentication.changeLanguage('')}" value="fr"
+				image="resources/img/french.png" />
+
+			<h:commandButton styleClass="btnLang"
+				action="#{authentication.changeLanguage('en')}" value="english"
+				image="resources/img/english.png" />
+		</h:form>
+	</footer>
+
+	<!-- Preloader -->
+	<div class="loader preloader-wrapper big active">
+		<div class="spinner-layer spinner-blue-only">
+			<div class="circle-clipper left">
+				<div class="circle"></div>
+			</div>
+			<div class="gap-patch">
+				<div class="circle"></div>
+			</div>
+			<div class="circle-clipper right">
+				<div class="circle"></div>
+			</div>
+		</div>
+	</div>
+</h:body>
+<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="resources/js/materialize.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('select').material_select();
+	});
+	// Hide Sections
+	$('.section').hide();
+
+	setTimeout(function() {
+		$(document).ready(function() {
+			// Show sections
+			$('.section').fadeIn();
+
+			// Hide preloader
+			$('.loader').fadeOut();
+
+			//Init Side nav
+			$('.button-collapse').sideNav();
+
+			// Init Modal
+			$('.modal').modal();
+		});
+	}, 1000);
+</script>
+</f:view>
+</html>
